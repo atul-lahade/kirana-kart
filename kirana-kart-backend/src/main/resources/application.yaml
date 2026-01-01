@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: Kirana Kart
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        types:
+          print:
+            banner: false
+        temp:
+          use_jdbc_metadata_defaults: false
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    url: jdbc:postgresql://localhost:5432/kirana-kart
+    username: postgres
+    password: 129109
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      pool-name: HikariPool-1
+      max-lifetime: 1800000
+      connection-timeout: 20000
+  liquibase:
+    change-log: classpath:db/db.changelog-master.yaml
+  security:
+    oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: rEHfD0m34cdbug3K16zrofKc8pWjGXKH
+            client-secret: xgiQfRHCugs-NXAC5KinJF6V4Ms2aHBdT6k8x-ZolunlEI9an7wIRhJ84otvHA9g
+            scope: openid,profile,email
+            redirect-uri: "http://localhost:3000/login/oauth2/code/auth0"
+            authorization-grant-type: authorization_code
+            client-name: Auth0
+        provider:
+          auth0:
+            issuer-uri: https://dev-bhojkart.jp.auth0.com/
+server:
+  port: 3000
