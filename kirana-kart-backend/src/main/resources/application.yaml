@@ -3,8 +3,10 @@ spring:
     name: Kirana Kart
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
     properties:
       hibernate:
+        ddl-auto: update
         types:
           print:
             banner: false
@@ -32,8 +34,8 @@ spring:
       client:
         registration:
           auth0:
-            client-id: rEHfD0m34cdbug3K16zrofKc8pWjGXKH
-            client-secret: xgiQfRHCugs-NXAC5KinJF6V4Ms2aHBdT6k8x-ZolunlEI9an7wIRhJ84otvHA9g
+            client-id: XRTFH7Y59N28IfItawsFBAu9hl9LNW2T
+            client-secret: tq1FGc5dKQ2W6b_D2jW83VFExZcmC1EQ4qlAI8Ga3WkDM8bjx9z0Et97z9vaw_d2
             scope: openid,profile,email
             redirect-uri: "http://localhost:3000/login/oauth2/code/auth0"
             authorization-grant-type: authorization_code
@@ -41,5 +43,25 @@ spring:
         provider:
           auth0:
             issuer-uri: https://dev-bhojkart.jp.auth0.com/
+
 server:
   port: 3000
+
+jwt:
+  secret: tq1FGc5dKQ2W6b_D2jW83VFExZcmC1EQ4qlAI8Ga3WkDM8bjx9z0Et97z9vaw_d2
+  expiration: 86400000  # 24 hours in milliseconds
+  refresh-expiration: 604800000  # 7 days in milliseconds
+
+spring.servlet.multipart:
+  max-file-size: 5MB
+  max-request-size: 10MB
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized

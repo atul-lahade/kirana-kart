@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: postgres
+  - changeSet:
+      id: 1
+      author: atul-lahade
+      comment: Initial setup - create required tables
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: changelog/001-create-required-tables.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+  - changeSet:
+      id: 2
+      author: atul-lahade
+      comment: Initial setup - create indexes
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: changelog/002-create-indexes.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+  - changeSet:
+      id: 3
+      author: atul-lahade
+      comment: Initial setup - create update triggers
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: changelog/003-create-update-triggers.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: true
